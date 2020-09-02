@@ -1,10 +1,6 @@
-import 'dart:async';
+library mintware.barcode_scan;
 
-import 'package:flutter/services.dart';
+export 'gen/protos/protos.pb.dart' show BarcodeFormat, ResultType;
 
-class BarcodeScanner {
-  static const CameraAccessDenied = 'PERMISSION_NOT_GRANTED';
-  static const MethodChannel _channel =
-      const MethodChannel('com.apptreesoftware.barcode_scan');
-  static Future<String> scan() async => await _channel.invokeMethod('scan');
-}
+export 'model/model.dart';
+export 'platform_wrapper.dart';
