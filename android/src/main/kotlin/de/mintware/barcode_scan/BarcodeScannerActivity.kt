@@ -1,5 +1,6 @@
 package de.mintware.barcode_scan
 
+
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -45,6 +46,9 @@ class BarcodeScannerActivity : Activity(), ZXingScannerView.ResultHandler {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val actionBar = actionBar
+        actionBar!!.setDisplayHomeAsUpEnabled(true)
+
         config = Protos.Configuration.parseFrom(intent.extras!!.getByteArray(EXTRA_CONFIG))
     }
 
@@ -73,15 +77,13 @@ class BarcodeScannerActivity : Activity(), ZXingScannerView.ResultHandler {
 
     // region AppBar menu
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        var buttonText = config.stringsMap["flash_on"]
+        var buttonText = "LAMPE AN"
         if (scannerView?.flash == true) {
-            buttonText = config.stringsMap["flash_off"]
+            buttonText = "LAMPE AUS"
         }
         val flashButton = menu.add(0, TOGGLE_FLASH, 0, buttonText)
         flashButton.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
 
-        val cancelButton = menu.add(0, CANCEL, 0, config.stringsMap["cancel"])
-        cancelButton.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -94,6 +96,10 @@ class BarcodeScannerActivity : Activity(), ZXingScannerView.ResultHandler {
         }
         if (item.itemId == CANCEL) {
             setResult(RESULT_CANCELED)
+            finish()
+            return true
+        }
+        if (item.itemId ==android.R.id.home) {
             finish()
             return true
         }
