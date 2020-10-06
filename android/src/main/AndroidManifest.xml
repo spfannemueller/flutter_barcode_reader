@@ -1,13 +1,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="de.mintware.barcode_scan">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    package="de.mintware.barcode_scan">
+  <uses-feature android:name="android.hardware.camera"/>
   <uses-permission android:name="android.permission.CAMERA" />
 
-  <application>
+  <application
+      android:theme="@style/AppTheme"
+      tools:ignore="GoogleAppIndexingWarning"
+      >
     <activity
 
-        android:name="de.mintware.barcode_scan.BarcodeScannerActivity"
+        android:name="de.mintware.barcode_scan.LiveBarcodeScanningActivity"
         android:label=""
+        android:exported="false"
+        android:screenOrientation="portrait"
+        >
+    </activity>
+    <activity
+
+        android:name="de.mintware.barcode_scan.settings.SettingsActivity"
+        android:label=""
+        android:exported="false"
+        android:screenOrientation="portrait"
         >
     </activity>
   </application>

@@ -13,6 +13,8 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry.ActivityResultListener
 import io.flutter.plugin.common.PluginRegistry.RequestPermissionsResultListener
 
+
+
 class ActivityHelper(private var applicationContext: Context?,
                      var activity: Activity? = null
 ) : ActivityResultListener, RequestPermissionsResultListener {
@@ -34,7 +36,9 @@ class ActivityHelper(private var applicationContext: Context?,
 
         activityResultMap[REQ_START_SCAN] = ScanResultHandler(result)
 
-        val intent = Intent(applicationContext, BarcodeScannerActivity::class.java)
+        //activity!!.startActivity(Intent(activity, LiveBarcodeScanningActivity::class.java))
+
+        val intent = Intent(applicationContext, LiveBarcodeScanningActivity::class.java)
         intent.putExtra(BarcodeScannerActivity.EXTRA_CONFIG, config.toByteArray())
         activity!!.startActivityForResult(intent, REQ_START_SCAN)
     }
@@ -44,9 +48,7 @@ class ActivityHelper(private var applicationContext: Context?,
             return false
         }
 
-        return activityResultMap
-                .getValue(requestCode)
-                .onActivityResult(requestCode, resultCode, data)
+        return activityResultMap.getValue(requestCode).onActivityResult(requestCode, resultCode, data)
     }
 
     fun requestCameraAccessIfNecessary(sink: EventChannel.EventSink?
