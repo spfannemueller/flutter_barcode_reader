@@ -73,7 +73,7 @@ class BarcodeScannerViewController: UIViewController {
                                   previewView: previewView
       )
     }
-    navigationItem.leftBarButtonItem = UIBarButtonItem(title: "config.strings["cancel"]",
+    navigationItem.leftBarButtonItem = UIBarButtonItem(title: config.strings["cancel"],
                                                         style: .plain,
                                                         target: self,
                                                         action: #selector(cancel)
