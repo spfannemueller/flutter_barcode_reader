@@ -15,9 +15,9 @@ class BarcodeScannerViewController: UIViewController {
   
   var config: Configuration = Configuration.with {
     $0.strings = [
-      "cancel" : "Cancel",
-      "flash_on" : "Flash on",
-      "flash_off" : "Flash off",
+      "cancel" : "Zurück",
+      "flash_on" : "Licht an",
+      "flash_off" : "Licht aus",
     ]
     $0.useCamera = -1 // Default camera
     $0.autoEnableFlash = false
@@ -73,7 +73,7 @@ class BarcodeScannerViewController: UIViewController {
                                   previewView: previewView
       )
     }
-    navigationItem.leftBarButtonItem = UIBarButtonItem(title: config.strings["cancel"],
+    navigationItem.leftBarButtonItem = UIBarButtonItem(title: "config.strings["cancel"]",
                                                         style: .plain,
                                                         target: self,
                                                         action: #selector(cancel)
