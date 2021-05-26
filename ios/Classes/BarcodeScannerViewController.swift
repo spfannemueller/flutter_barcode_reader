@@ -73,7 +73,7 @@ class BarcodeScannerViewController: UIViewController {
                                   previewView: previewView
       )
     }
-    navigationItem.leftBarButtonItem = UIBarButtonItem(title: config.strings["cancel"],
+    navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Zurück",
                                                         style: .plain,
                                                         target: self,
                                                         action: #selector(cancel)
@@ -177,7 +177,7 @@ class BarcodeScannerViewController: UIViewController {
       return
     }
     
-    let buttonText = isFlashOn ? config.strings["flash_off"] : config.strings["flash_on"]
+    let buttonText = isFlashOn ? "Licht aus" : "Licht an"
     navigationItem.rightBarButtonItem = UIBarButtonItem(title: buttonText,
                                                         style: .plain,
                                                         target: self,
